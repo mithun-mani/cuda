@@ -2,24 +2,12 @@
 #include <math.h>
 using namespace std;
 
-__global__
-void add (float *x){
-    x = 12;
-    cout << x;
+__global__ void cuda_hello(){
+    printf("Hello World from GPU!\n");
 }
-int main(void) {
 
-    float *x;
-
-    cudaMallocManaged(&x,sizeof(float));
-
-    add<<<1,1>>>(x);
-    
-
-    cudaDeviceSynchronize();
-
-    cudaFree(x);
-    cudaFree(y);
-
+int main() {
+    cuda_hello<<<1,1>>>(); 
     return 0;
 }
+
