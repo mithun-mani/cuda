@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <cuda_profiler_api.h>
 // Kernel function to add the elements of two arrays
 __global__
 void add(int n, float *x, float *y)
@@ -22,9 +23,10 @@ int main(void)
     x[i] = 1.0f;
     y[i] = 2.0f;
   }
-
+cudaProfilerStart();
   // Run kernel on 1M elements on the GPU
   add<<<1, 1>>>(N, x, y);
+  cudaProfilerStop();
 
   // Wait for GPU to finish before accessing on host
   cudaDeviceSynchronize();
