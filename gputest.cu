@@ -7,6 +7,7 @@ __global__
 void printer (){
     printf("Hello World from GPU\n");
 }
-int main(void) {
+int main() {
     printer<<<1,1>>>();
+    return 0;
 }
