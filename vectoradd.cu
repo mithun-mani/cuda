@@ -11,6 +11,7 @@ void add(int n, float *x, float *y)
 
 int main(void)
 {
+  cudaProfilerStart();
   int N = 1<<20;
   float *x, *y;
 
@@ -23,10 +24,8 @@ int main(void)
     x[i] = 1.0f;
     y[i] = 2.0f;
   }
-cudaProfilerStart();
   // Run kernel on 1M elements on the GPU
   add<<<1, 1>>>(N, x, y);
-  cudaProfilerStop();
 
   // Wait for GPU to finish before accessing on host
   cudaDeviceSynchronize();
@@ -36,11 +35,11 @@ cudaProfilerStart();
   for (int i = 0; i < N; i++)
     maxError = fmax(maxError, fabs(y[i]-3.0f));
   std::cout << "Max error: " << maxError << std::endl;
+  cudaProfilerStop();
 
   // Free memory
   cudaFree(x);
   cudaFree(y);
 
-  
   return 0;
 }
