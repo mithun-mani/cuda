@@ -4,7 +4,7 @@
 }
 */
 __global__
-void printer (int n, float *x, float *y){
+void printer (){
     printf("Hello World from GPU\n");
 }
 int main(void) {
