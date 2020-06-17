@@ -5,7 +5,7 @@ __global__ void printer (void){
 }
 int main(void) {
     printer<<<1,1>>>();
-    cudaDeviceSynchronize();
+    //cudaDeviceSynchronize();
     return 0;
 }
 /*
