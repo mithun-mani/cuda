@@ -1,17 +1,14 @@
-/*#include <stdio.h>
-int main() {
-    printf("Hello World from GPU!\n");
-}
-
-__global__
-void printer (){
+#include <stdio.h>
+#include <stdlib.h>
+__global__ void printer (void){
     printf("Hello World from GPU\n");
 }
-int main() {
+int main(void) {
     printer<<<1,1>>>();
+    cudaDeviceSynchronize();
     return 0;
 }
-*/
+/*
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -26,3 +23,4 @@ int main(void) {
     cudaDeviceSynchronize();
     return 0;
 }
+*/
