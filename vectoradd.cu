@@ -39,5 +39,7 @@ int main(void)
   cudaFree(x);
   cudaFree(y);
   
+  cuProfilerStop();
+  
   return 0;
 }
