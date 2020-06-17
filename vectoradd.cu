@@ -38,8 +38,7 @@ int main(void)
   // Free memory
   cudaFree(x);
   cudaFree(y);
-  
-  cuProfilerStop();
+
   
   return 0;
 }
