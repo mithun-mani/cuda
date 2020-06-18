@@ -11,8 +11,7 @@ void add(int n, float *x, float *y)
 
 int main(void)
 {
-  cudaProfilerStart();
-  int N = 1<<30;
+  int N = 1<<20;
   float *x, *y;
 
   // Allocate Unified Memory – accessible from CPU or GPU
@@ -25,6 +24,7 @@ int main(void)
     y[i] = 2.0f;
   }
   // Run kernel on 1M elements on the GPU
+  cudaProfilerStart();
   add<<<1, 1>>>(N, x, y);
 
   // Wait for GPU to finish before accessing on host
@@ -36,7 +36,6 @@ int main(void)
     maxError = fmax(maxError, fabs(y[i]-3.0f));
   std::cout << "Max error: " << maxError << std::endl;
   cudaProfilerStop();
-
   // Free memory
   cudaFree(x);
   cudaFree(y);
